@@ -3,6 +3,8 @@ package tn.esprit.tp1.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -15,4 +17,8 @@ public class Equipement {
     private Long idEquipement;
 
     private String libelle;
+
+    // Relation inverse du ManyToMany
+    @ManyToMany(mappedBy = "equipements")
+    private List<Vehicule> vehicules;
 }

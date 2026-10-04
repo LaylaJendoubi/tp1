@@ -15,9 +15,13 @@ public class Employe {
     private Long idEmploye;
 
     private String nom;
-
     private String prenom;
 
     @Enumerated(EnumType.STRING)
     private RoleEmploye role;
+
+    // Plusieurs employés appartiennent à une agence
+    @ManyToOne
+    @JoinColumn(name = "id_agence")
+    private Agence agence;
 }

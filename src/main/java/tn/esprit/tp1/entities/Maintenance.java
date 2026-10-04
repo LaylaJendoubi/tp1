@@ -17,8 +17,11 @@ public class Maintenance {
     private Long idMaintenance;
 
     private LocalDate dateDebut;
-
     private LocalDate dateFin;
-
     private String description;
+
+    // Plusieurs maintenances concernent un véhicule
+    @ManyToOne
+    @JoinColumn(name = "id_vehicule")
+    private Vehicule vehicule;
 }
