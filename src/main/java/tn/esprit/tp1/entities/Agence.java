@@ -1,15 +1,20 @@
+
 package tn.esprit.tp1.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Agence {
 
     @Id
@@ -21,10 +26,9 @@ public class Agence {
     private String adresse;
     private String telephone;
 
-    // Une agence possède plusieurs employés
     @OneToMany(mappedBy = "agence")
-    private List<Employe> employes;
-    // Une agence possède plusieurs véhicules
+    private Set<Employe> employes = new HashSet<>();
+
     @OneToMany(mappedBy = "agence")
-    private List<Vehicule> vehicules;
+    private Set<Vehicule> vehicules = new HashSet<>();
 }

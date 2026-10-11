@@ -1,17 +1,22 @@
+
 package tn.esprit.tp1.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Contrat {
 
     @Id
@@ -22,15 +27,14 @@ public class Contrat {
     private BigDecimal montantTotal;
     private boolean valide;
 
-    // Un contrat correspond à une réservation
-    @OneToOne(mappedBy = "contrat")
+    @OneToOne
+    @JoinColumn(name = "reservation_id", unique = true)
     private Reservation reservation;
 
-    // Composition : un contrat possède plusieurs paiements
     @OneToMany(
             mappedBy = "contrat",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Paiement> paiements;
+    private Set<Paiement> paiements = new HashSet<>();
 }

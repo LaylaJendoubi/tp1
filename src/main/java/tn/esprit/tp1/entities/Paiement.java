@@ -1,7 +1,11 @@
+
 package tn.esprit.tp1.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -9,8 +13,8 @@ import java.time.LocalDate;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Paiement {
 
     @Id
@@ -23,8 +27,7 @@ public class Paiement {
     @Enumerated(EnumType.STRING)
     private ModePaiement modePaiement;
 
-    // Plusieurs paiements appartiennent à un contrat
     @ManyToOne
-    @JoinColumn(name = "id_contrat")
+    @JoinColumn(name = "contrat_id")
     private Contrat contrat;
 }

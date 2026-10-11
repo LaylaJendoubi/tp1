@@ -1,16 +1,21 @@
+
 package tn.esprit.tp1.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Vehicule {
 
     @Id
@@ -29,25 +34,21 @@ public class Vehicule {
     @Enumerated(EnumType.STRING)
     private StatutVehicule statut;
 
-    // Plusieurs véhicules appartiennent à une agence
     @ManyToOne
-    @JoinColumn(name = "id_agence")
+    @JoinColumn(name = "agence_id")
     private Agence agence;
 
-    // Un véhicule peut avoir plusieurs maintenances
     @OneToMany(mappedBy = "vehicule")
-    private List<Maintenance> maintenances;
+    private Set<Maintenance> maintenances = new HashSet<>();
 
-    // Plusieurs véhicules peuvent avoir plusieurs équipements
     @ManyToMany
     @JoinTable(
             name = "vehicule_equipement",
-            joinColumns = @JoinColumn(name = "id_vehicule"),
-            inverseJoinColumns = @JoinColumn(name = "id_equipement")
+            joinColumns = @JoinColumn(name = "vehicule_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipement_id")
     )
-    private List<Equipement> equipements;
+    private Set<Equipement> equipements = new HashSet<>();
 
-    // Un véhicule peut avoir plusieurs réservations
     @OneToMany(mappedBy = "vehicule")
-    private List<Reservation> reservations;
+    private Set<Reservation> reservations = new HashSet<>();
 }

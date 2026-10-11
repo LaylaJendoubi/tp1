@@ -1,15 +1,19 @@
+
 package tn.esprit.tp1.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Reservation {
 
     @Id
@@ -22,18 +26,14 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     private StatutReservation statut;
 
-    // Plusieurs réservations concernent un véhicule
     @ManyToOne
-    @JoinColumn(name = "id_vehicule")
-    private Vehicule vehicule;
-
-    // Plusieurs réservations appartiennent à un client
-    @ManyToOne
-    @JoinColumn(name = "id_client")
+    @JoinColumn(name = "client_id")
     private Client client;
 
-    // Une réservation correspond à un seul contrat
-    @OneToOne
-    @JoinColumn(name = "id_contrat")
+    @ManyToOne
+    @JoinColumn(name = "vehicule_id")
+    private Vehicule vehicule;
+
+    @OneToOne(mappedBy = "reservation")
     private Contrat contrat;
 }

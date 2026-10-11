@@ -1,15 +1,20 @@
+
 package tn.esprit.tp1.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Equipement {
 
     @Id
@@ -18,7 +23,6 @@ public class Equipement {
 
     private String libelle;
 
-    // Relation inverse du ManyToMany
     @ManyToMany(mappedBy = "equipements")
-    private List<Vehicule> vehicules;
+    private Set<Vehicule> vehicules = new HashSet<>();
 }

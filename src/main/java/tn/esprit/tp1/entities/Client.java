@@ -1,16 +1,21 @@
+
 package tn.esprit.tp1.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Client {
 
     @Id
@@ -24,7 +29,6 @@ public class Client {
     private String numPermis;
     private LocalDate dateInscription;
 
-    // Un client peut avoir plusieurs réservations
     @OneToMany(mappedBy = "client")
-    private List<Reservation> reservations;
+    private Set<Reservation> reservations = new HashSet<>();
 }
