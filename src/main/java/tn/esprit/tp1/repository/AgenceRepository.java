@@ -5,4 +5,5 @@ import tn.esprit.tp1.entities.Agence;
 
 public interface AgenceRepository extends JpaRepository<Agence, Long> {
 
+
 }
