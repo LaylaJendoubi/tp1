@@ -7,13 +7,4 @@ import java.util.Set;
 
 public interface IClientService {
 
-    Set<Client> retrieveAllClients();
-
-    Client retrieveClient(Long id);
-
-    Client addClient(Client client);
-
-    Client updateClient(Client client);
-
-    void removeClient(Long id);
 }
