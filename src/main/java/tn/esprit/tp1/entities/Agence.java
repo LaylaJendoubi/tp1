@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Getter
@@ -25,7 +26,7 @@ public class Agence {
     private String ville;
     private String adresse;
     private String telephone;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "agence")
     private Set<Employe> employes = new HashSet<>();
 

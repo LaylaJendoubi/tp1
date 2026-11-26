@@ -11,4 +11,7 @@ public interface IAgenceService {
     public void removeAgence(Long idAgence);
     public Agence modifyAgence(Agence agence);
 
+    //Keywords
+    public List<Agence> retrieveAgencesByVille(String ville);
+    public List<Agence> retrieveAgencesByNomEndingWith(String chaine);
 }

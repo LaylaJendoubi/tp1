@@ -35,5 +35,12 @@ public class AgenceRestController {
     public void modifyAgence(@RequestBody Agence agence){
         Agence agence1=agenceService.modifyAgence(agence);
 }
-
+    @GetMapping("/by-ville")
+    public List<Agence> getByVille(@RequestParam String ville) {
+        return agenceService.retrieveAgencesByVille(ville);
+    }
+    @GetMapping("/nom-termine")
+    public List<Agence> getNomTermine(@RequestParam String chaine) {
+        return agenceService.retrieveAgencesByNomEndingWith(chaine);
+    }
 }

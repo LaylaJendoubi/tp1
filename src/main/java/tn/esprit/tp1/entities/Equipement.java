@@ -9,7 +9,7 @@ import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.Set;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Getter
 @Setter
@@ -22,7 +22,7 @@ public class Equipement {
     private Long idEquipement;
 
     private String libelle;
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "equipements")
     private Set<Vehicule> vehicules = new HashSet<>();
 }

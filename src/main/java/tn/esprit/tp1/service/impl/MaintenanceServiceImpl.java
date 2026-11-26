@@ -6,6 +6,7 @@ import tn.esprit.tp1.entities.Maintenance;
 import tn.esprit.tp1.repository.MaintenanceRepository;
 import tn.esprit.tp1.service.interfaces.IMaintenanceService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -26,5 +27,10 @@ public class MaintenanceServiceImpl implements IMaintenanceService {
     }
     public Maintenance modifyMaintenance(Maintenance maintenance) {
         return maintenanceRepository.save(maintenance);
+    }
+
+    @Override
+    public List<Maintenance> retrieveMaintenancesBetween(LocalDate debut, LocalDate fin) {
+        return maintenanceRepository.findByDateFinBetween(debut, fin);
     }
 }

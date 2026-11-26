@@ -9,7 +9,7 @@ import tn.esprit.tp1.repository.ReservationRepository;
 import tn.esprit.tp1.service.interfaces.IReservationService;
 
 import java.util.List;
-
+import java.time.LocalDate;
 @Service
 @AllArgsConstructor
 public class ReservationServiceImpl implements IReservationService {
@@ -28,5 +28,13 @@ public class ReservationServiceImpl implements IReservationService {
     }
     public Reservation modifyReservation(Reservation reservation) {
         return reservationRepository.save(reservation);
+    }
+    @Override
+    public List<Reservation> retrieveReservationsAfter(LocalDate date) {
+        return reservationRepository.findByDateDebutAfter(date);
+    }
+    @Override
+    public List<Reservation> retrieveReservationsBefore(LocalDate date) {
+        return reservationRepository.findByDateFinBefore(date);
     }
 }

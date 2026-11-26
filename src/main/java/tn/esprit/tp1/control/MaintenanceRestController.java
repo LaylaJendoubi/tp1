@@ -1,10 +1,12 @@
 package tn.esprit.tp1.control;
 
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tp1.entities.Maintenance;
 import tn.esprit.tp1.service.interfaces.IMaintenanceService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -39,5 +41,11 @@ public class MaintenanceRestController {
     @PutMapping("/modify-maintenance")
     public void modifyMaintenance(@RequestBody Maintenance maintenance) {
         Maintenance maintenance1 = maintenanceService.modifyMaintenance(maintenance);
+    }
+    @GetMapping("/between")
+    public List<Maintenance> getBetween(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate debut,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fin) {
+        return maintenanceService.retrieveMaintenancesBetween(debut, fin);
     }
 }

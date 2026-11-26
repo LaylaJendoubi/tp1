@@ -15,20 +15,17 @@ public class EmployeRestController {
 
     @GetMapping("/retrieve-all-employes")
     public List<Employe> getEmployes() {
-        List<Employe> listEmployes = employeService.retrieveAllEmployes();
-        return listEmployes;
+        return employeService.retrieveAllEmployes();
     }
 
     @GetMapping("/retrieve-employe/{employe-id}")
     public Employe retrieveEmploye(@PathVariable("employe-id") Long employeId) {
-        Employe employe = employeService.retrieveEmploye(employeId);
-        return employe;
+        return employeService.retrieveEmploye(employeId);
     }
 
     @PostMapping("/add-employe")
     public Employe addEmploye(@RequestBody Employe employe) {
-        Employe employe1 = employeService.addEmploye(employe);
-        return employe1;
+        return employeService.addEmploye(employe);
     }
 
     @DeleteMapping("/remove-employe")
@@ -38,6 +35,17 @@ public class EmployeRestController {
 
     @PutMapping("/modify-employe")
     public void modifyEmploye(@RequestBody Employe employe) {
-        Employe employe1 = employeService.modifyEmploye(employe);
+        employeService.modifyEmploye(employe);
+    }
+
+    //affectation et desaffectation
+    @PutMapping("/desaffecterEmploye/{idEmploye}")
+    public Employe desaffecterEmploye(@PathVariable Long idEmploye) {
+        return employeService.desaffecterEmploye(idEmploye);
+    }
+
+    @PutMapping("/affecterEmploye/{idEmploye}/{idAgence}")
+    public Employe affecterEmploye(@PathVariable Long idEmploye, @PathVariable Long idAgence) {
+        return employeService.affecterEmploye(idEmploye, idAgence);
     }
 }
